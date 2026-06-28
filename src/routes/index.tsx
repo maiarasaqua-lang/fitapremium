@@ -518,13 +518,16 @@ function Index() {
       {/* Sticky mobile CTA */}
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-card/95 p-3 shadow-soft backdrop-blur md:hidden">
         <a
-          href={CHECKOUT}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-gold px-4 py-3 text-sm font-bold uppercase text-primary-foreground shadow-cta"
+          href="#oferta"
+          onClick={scrollToOferta}
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-gold px-4 py-3 text-sm font-bold uppercase text-primary-foreground shadow-cta animate-pulse-cta"
         >
           <Sparkles className="h-4 w-4" /> Garantir por R$ 19,90
         </a>
       </div>
       <div className="h-20 md:hidden" />
+
+      <PurchaseNotifications />
 
       <noscript>
         <img height="1" width="1" style={{ display: "none" }} src="https://www.facebook.com/tr?id=2085744399005789&ev=PageView&noscript=1" alt="" />
