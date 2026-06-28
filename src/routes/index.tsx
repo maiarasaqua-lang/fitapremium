@@ -46,36 +46,27 @@ function Index() {
       {/* HERO */}
       <header className="bg-gradient-warm">
         <div className="mx-auto max-w-5xl px-4 py-10 sm:py-16">
-          <div className="grid gap-8 md:grid-cols-2 md:items-center">
-            <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-card px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent">
-                <Sparkles className="h-3.5 w-3.5" /> Método Fita Premium
-              </span>
-              <h1 className="mt-4 font-display text-3xl font-black leading-[1.05] text-balance text-ink sm:text-5xl">
-                Mega Hair de Fita: o método que te ensina a <em className="not-italic text-accent">confeccionar com acabamento de salão</em> — e transformar em renda.
-              </h1>
-              <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Sem aplicar em ninguém. Sem gastar com curso caro. Sem testar material no erro.
-              </p>
-              <div className="mt-6 rounded-2xl border border-border bg-card p-5 shadow-soft">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">De <s>R$67,00</s> por apenas</p>
-                <p className="mt-1 font-display text-4xl font-black text-primary sm:text-5xl">R$ 37,90</p>
-                <p className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
-                  <MessageCircle className="h-4 w-4 text-accent" /> Grupo de suporte no WhatsApp incluso
-                </p>
-                <div className="mt-4">
-                  <CTA />
-                </div>
-              </div>
-            </div>
-            <div className="relative">
+          <div className="text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-card px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent">
+              <Sparkles className="h-3.5 w-3.5" /> Método Fita Premium
+            </span>
+            <h1 className="mt-4 font-display text-3xl font-black leading-[1.05] text-balance text-ink sm:text-5xl">
+              Mega Hair de Fita: o método que te ensina a <em className="not-italic text-accent">confeccionar com acabamento de salão</em> — e transformar em renda.
+            </h1>
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Sem aplicar em ninguém. Sem gastar com curso caro. Sem testar material no erro.
+            </p>
+            <div className="relative mx-auto mt-8 max-w-md">
               <div className="absolute -inset-4 rounded-3xl bg-gradient-gold opacity-20 blur-2xl" />
               <img
                 src="https://i.postimg.cc/R0NsqjS7/img-produto.png"
                 alt="Método Fita Premium — produto digital"
-                className="relative mx-auto w-full max-w-md rounded-2xl shadow-soft"
+                className="relative w-full rounded-2xl shadow-soft"
                 loading="eager"
               />
+            </div>
+            <div className="mt-6">
+              <CTA />
             </div>
           </div>
         </div>
@@ -269,6 +260,28 @@ function Index() {
             <p className="mt-1 font-display text-5xl font-black text-primary sm:text-6xl">R$ 19,90</p>
             <p className="mt-2 text-sm text-muted-foreground">Pagamento único · acesso imediato</p>
           </div>
+
+          <div className="mt-8 rounded-2xl border border-border bg-muted p-4 sm:p-6">
+            <p className="text-center text-xs font-bold uppercase tracking-widest text-accent">Você leva tudo isso</p>
+            <ul className="mt-4 space-y-3">
+              {[
+                { t: "Método Fita Premium", v: "R$97" },
+                { t: "Bônus: Guia Completo de Materiais", v: "R$97" },
+                { t: "Bônus: Mapa da Produção Perfeita", v: "R$197" },
+                { t: "Grupo de suporte no WhatsApp", v: "R$47" },
+              ].map((it) => (
+                <li key={it.t} className="flex items-center justify-between gap-3 border-b border-border/50 pb-2 text-sm">
+                  <span className="font-medium">{it.t}</span>
+                  <span className="font-bold text-muted-foreground">{it.v}</span>
+                </li>
+              ))}
+              <li className="flex items-center justify-between gap-3 pt-1 text-sm font-bold">
+                <span className="text-accent">Total de valor real</span>
+                <span className="text-accent">R$ 438</span>
+              </li>
+            </ul>
+          </div>
+
           <div className="mt-6">
             <CTA>Quero adquirir com valor promocional</CTA>
           </div>
@@ -404,3 +417,4 @@ function Index() {
     </div>
   );
 }
+
