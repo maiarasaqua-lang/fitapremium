@@ -398,7 +398,7 @@ function Index() {
           </div>
 
           <div className="mt-6">
-            <CTA>Quero adquirir com valor promocional</CTA>
+            <CTA checkout>Quero adquirir com valor promocional</CTA>
           </div>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {[
