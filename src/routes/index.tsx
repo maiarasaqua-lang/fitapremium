@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, ShieldCheck, Clock, MessageCircle, Sparkles, Star } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Check, ShieldCheck, Clock, MessageCircle, Sparkles, Star, ShoppingBag, X } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -16,14 +17,32 @@ export const Route = createFileRoute("/")({
 
 const CHECKOUT = "https://pay.lowify.com.br/checkout?product_id=XjSpMO";
 
-function CTA({ children = "Quero adquirir com valor promocional", className = "" }: { children?: React.ReactNode; className?: string }) {
+function scrollToOferta(e: React.MouseEvent) {
+  e.preventDefault();
+  const el = typeof document !== "undefined" ? document.getElementById("oferta") : null;
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function CTA({
+  children = "Quero adquirir com valor promocional",
+  className = "",
+  checkout = false,
+}: {
+  children?: React.ReactNode;
+  className?: string;
+  checkout?: boolean;
+}) {
   return (
     <a
-      href={CHECKOUT}
+      href={checkout ? CHECKOUT : "#oferta"}
       className={`inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-gold px-6 py-4 text-base font-bold uppercase tracking-wide text-primary-foreground shadow-cta animate-pulse-cta transition hover:brightness-110 sm:text-lg ${className}`}
-      onClick={() => {
-        if (typeof window !== "undefined" && (window as any).fbq) {
-          (window as any).fbq("track", "InitiateCheckout");
+      onClick={(e) => {
+        if (checkout) {
+          if (typeof window !== "undefined" && (window as any).fbq) {
+            (window as any).fbq("track", "InitiateCheckout");
+          }
+        } else {
+          scrollToOferta(e);
         }
       }}
     >
@@ -32,6 +51,102 @@ function CTA({ children = "Quero adquirir com valor promocional", className = ""
     </a>
   );
 }
+
+const BUYER_NAMES = [
+  "Mariana", "Juliana", "Patrícia", "Camila", "Beatriz", "Larissa", "Fernanda", "Aline",
+  "Carolina", "Bruna", "Renata", "Tatiane", "Vanessa", "Letícia", "Gabriela", "Amanda",
+  "Priscila", "Daniele", "Sabrina", "Roberta", "Eliane", "Jéssica", "Natália", "Luana",
+];
+const BR_STATES = [
+  "SP", "RJ", "MG", "BA", "RS", "PR", "PE", "CE", "SC", "GO", "PA", "MA", "ES", "PB",
+  "DF", "AM", "MT", "MS", "RN", "AL", "PI", "SE", "TO", "RO", "AC", "AP", "RR",
+];
+const STATE_CITIES: Record<string, string[]> = {
+  SP: ["São Paulo", "Campinas", "Santos", "Guarulhos"],
+  RJ: ["Rio de Janeiro", "Niterói", "Petrópolis"],
+  MG: ["Belo Horizonte", "Uberlândia", "Juiz de Fora"],
+  BA: ["Salvador", "Feira de Santana", "Ilhéus"],
+  RS: ["Porto Alegre", "Caxias do Sul"],
+  PR: ["Curitiba", "Londrina", "Maringá"],
+  PE: ["Recife", "Olinda", "Caruaru"],
+  CE: ["Fortaleza", "Sobral"],
+  SC: ["Florianópolis", "Joinville", "Blumenau"],
+  GO: ["Goiânia", "Anápolis"],
+  PA: ["Belém", "Santarém"],
+  MA: ["São Luís"],
+  ES: ["Vitória", "Vila Velha"],
+  PB: ["João Pessoa", "Campina Grande"],
+  DF: ["Brasília"],
+  AM: ["Manaus"],
+  MT: ["Cuiabá"],
+  MS: ["Campo Grande"],
+  RN: ["Natal"],
+  AL: ["Maceió"],
+  PI: ["Teresina"],
+  SE: ["Aracaju"],
+  TO: ["Palmas"],
+  RO: ["Porto Velho"],
+  AC: ["Rio Branco"],
+  AP: ["Macapá"],
+  RR: ["Boa Vista"],
+};
+
+function PurchaseNotifications() {
+  const [notif, setNotif] = useState<{ id: number; name: string; city: string; uf: string; mins: number } | null>(null);
+
+  useEffect(() => {
+    let id = 0;
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const show = () => {
+      const name = BUYER_NAMES[Math.floor(Math.random() * BUYER_NAMES.length)];
+      const uf = BR_STATES[Math.floor(Math.random() * BR_STATES.length)];
+      const cities = STATE_CITIES[uf] || [uf];
+      const city = cities[Math.floor(Math.random() * cities.length)];
+      const mins = Math.floor(Math.random() * 14) + 1;
+      id += 1;
+      setNotif({ id, name, city, uf, mins });
+      timeoutId = setTimeout(() => {
+        setNotif(null);
+        timeoutId = setTimeout(show, 4000 + Math.random() * 4000);
+      }, 5000);
+    };
+
+    const initial = setTimeout(show, 3500);
+    return () => {
+      clearTimeout(initial);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
+  if (!notif) return null;
+  return (
+    <div className="fixed bottom-24 left-3 z-50 md:bottom-6 md:left-6 animate-fade-in">
+      <div className="flex max-w-xs items-center gap-3 rounded-2xl border border-border bg-card/95 p-3 pr-4 shadow-soft backdrop-blur">
+        <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gradient-gold text-primary-foreground">
+          <ShoppingBag className="h-5 w-5" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-semibold leading-tight">
+            {notif.name} de {notif.city}/{notif.uf}
+          </p>
+          <p className="text-xs text-muted-foreground">
+            acabou de garantir o Método · há {notif.mins} min
+          </p>
+        </div>
+        <button
+          type="button"
+          aria-label="Fechar"
+          onClick={() => setNotif(null)}
+          className="text-muted-foreground hover:text-foreground"
+        >
+          <X className="h-4 w-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 
 function Index() {
   return (
