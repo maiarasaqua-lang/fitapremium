@@ -1,29 +1,406 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Check, ShieldCheck, Clock, MessageCircle, Sparkles, Star } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Método Fita Premium — Confeccione Mega Hair de Fita" },
+      { name: "description", content: "Aprenda a confeccionar mega hair de fita com acabamento de salão. Sem aplicar em ninguém. R$19,90 hoje." },
+      { property: "og:title", content: "Método Fita Premium — Mega Hair de Fita" },
+      { property: "og:description", content: "Confeccione com fixação forte e acabamento profissional. Método + 2 bônus." },
+      { property: "og:image", content: "https://i.postimg.cc/R0NsqjS7/img-produto.png" },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const CHECKOUT = "https://pay.lowify.com.br/checkout?product_id=XjSpMO";
+
+function CTA({ children = "Quero adquirir com valor promocional", className = "" }: { children?: React.ReactNode; className?: string }) {
+  return (
+    <a
+      href={CHECKOUT}
+      className={`inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-gold px-6 py-4 text-base font-bold uppercase tracking-wide text-primary-foreground shadow-cta animate-pulse-cta transition hover:brightness-110 sm:text-lg ${className}`}
+      onClick={() => {
+        if (typeof window !== "undefined" && (window as any).fbq) {
+          (window as any).fbq("track", "InitiateCheckout");
+        }
+      }}
+    >
+      <Sparkles className="h-5 w-5 shrink-0" />
+      <span>{children}</span>
+    </a>
+  );
+}
+
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Top bar */}
+      <div className="bg-primary text-primary-foreground">
+        <p className="mx-auto max-w-5xl px-4 py-2 text-center text-xs font-medium sm:text-sm">
+          🔥 OFERTA RELÂMPAGO — 85% OFF + 2 bônus exclusivos
+        </p>
+      </div>
+
+      {/* HERO */}
+      <header className="bg-gradient-warm">
+        <div className="mx-auto max-w-5xl px-4 py-10 sm:py-16">
+          <div className="grid gap-8 md:grid-cols-2 md:items-center">
+            <div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-card px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent">
+                <Sparkles className="h-3.5 w-3.5" /> Método Fita Premium
+              </span>
+              <h1 className="mt-4 font-display text-3xl font-black leading-[1.05] text-balance text-ink sm:text-5xl">
+                Mega Hair de Fita: o método que te ensina a <em className="not-italic text-accent">confeccionar com acabamento de salão</em> — e transformar em renda.
+              </h1>
+              <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Sem aplicar em ninguém. Sem gastar com curso caro. Sem testar material no erro.
+              </p>
+              <div className="mt-6 rounded-2xl border border-border bg-card p-5 shadow-soft">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">De <s>R$67,00</s> por apenas</p>
+                <p className="mt-1 font-display text-4xl font-black text-primary sm:text-5xl">R$ 37,90</p>
+                <p className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
+                  <MessageCircle className="h-4 w-4 text-accent" /> Grupo de suporte no WhatsApp incluso
+                </p>
+                <div className="mt-4">
+                  <CTA />
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-gold opacity-20 blur-2xl" />
+              <img
+                src="https://i.postimg.cc/R0NsqjS7/img-produto.png"
+                alt="Método Fita Premium — produto digital"
+                className="relative mx-auto w-full max-w-md rounded-2xl shadow-soft"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* 4 perguntas */}
+      <section className="mx-auto max-w-5xl px-4 py-14 sm:py-20">
+        <div className="grid gap-10 md:grid-cols-2 md:items-center">
+          <img
+            src="https://i.postimg.cc/rpSDMkpz/Gemini-Generated-Image-mj8sdbmj8sdbmj8s-1024x1024.png"
+            alt="Confecção de mega hair"
+            className="w-full rounded-2xl shadow-soft"
+            loading="lazy"
+          />
+          <div>
+            <h2 className="font-display text-2xl font-bold text-balance sm:text-4xl">
+              As 4 perguntas que travam quem quer confeccionar mega hair de fita
+            </h2>
+            <ul className="mt-6 space-y-4">
+              {[
+                "Como vender confecção sem precisar aplicar?",
+                "Qual material entra na lista e qual é desperdício de dinheiro?",
+                "Qual cola realmente fixa — e qual descola em 2 semanas?",
+                "Como deixar o resultado leve, padronizado e digno de cobrar caro?",
+              ].map((q, i) => (
+                <li key={i} className="flex gap-3 rounded-xl border border-border bg-card p-4">
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-sm font-bold text-accent-foreground">{i + 1}</span>
+                  <p className="text-sm font-medium sm:text-base">{q}</p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-base text-muted-foreground">
+              Você não precisa testar isso no erro. Existe uma sequência certa — e ela é simples de seguir.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Promise */}
+      <section className="bg-primary text-primary-foreground">
+        <div className="mx-auto max-w-4xl px-4 py-14 text-center sm:py-20">
+          <h2 className="font-display text-3xl font-bold text-balance sm:text-4xl">
+            E se você pudesse pular direto para o resultado?
+          </h2>
+          <p className="mt-4 text-base opacity-90 sm:text-lg">Imagina já saber, com clareza total:</p>
+          <ul className="mx-auto mt-8 grid max-w-2xl gap-3 text-left sm:gap-4">
+            {[
+              "Como produzir sua primeira peça vendável, sem adivinhação.",
+              "Como confeccionar com segurança, sem medo de errar a fixação.",
+              "Como repetir esse padrão toda vez — e cobrar por isso.",
+            ].map((t) => (
+              <li key={t} className="flex items-start gap-3 rounded-xl bg-white/10 p-4 backdrop-blur">
+                <Check className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+                <span className="text-sm sm:text-base">{t}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-base font-semibold sm:text-lg">Foi exatamente isso que eu construí.</p>
+        </div>
+      </section>
+
+      {/* Método */}
+      <section className="mx-auto max-w-5xl px-4 py-14 sm:py-20">
+        <div className="grid gap-10 md:grid-cols-2 md:items-center">
+          <div>
+            <span className="inline-flex rounded-full bg-accent/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent">O método</span>
+            <h2 className="mt-3 font-display text-3xl font-black text-balance sm:text-4xl">O Método Fita Premium</h2>
+            <p className="mt-4 text-base text-muted-foreground sm:text-lg">
+              Um processo direto, sem teoria de sobra, para confeccionar mega hair de fita com fixação forte e acabamento natural — mesmo que você nunca tenha feito uma peça antes.
+            </p>
+            <div className="mt-6 rounded-2xl border-l-4 border-accent bg-card p-5 shadow-soft">
+              <p className="text-sm font-semibold sm:text-base">
+                Seguindo certo, em até <span className="text-accent">7 dias</span> você já produz peças prontas para usar ou vender.
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Sem volta: o foco é produção correta → estrutura profissional → resultado vendável.
+              </p>
+            </div>
+          </div>
+          <img
+            src="https://i.postimg.cc/FFP79GhC/491296933-2556927701180118-8595795838997347534-n.jpg"
+            alt="Peça de mega hair confeccionada"
+            className="w-full rounded-2xl shadow-soft"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      {/* O que recebe */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-5xl px-4 py-14 sm:py-20">
+          <h2 className="text-center font-display text-3xl font-bold text-balance sm:text-4xl">O que você recebe no método</h2>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            {[
+              { t: "Confecção do zero", d: "Passo a passo completo para produzir sua primeira unidade com segurança, mesmo começando sem experiência." },
+              { t: "Fita que não descola", d: "A estrutura exata de montagem para fixação forte e durabilidade — o que separa peça amadora de peça vendável." },
+              { t: "Lista de materiais sem desperdício", d: "O que comprar, o que evitar, e onde a maioria perde dinheiro sem saber." },
+              { t: "Padronização para vender", d: "Como repetir o mesmo padrão de qualidade peça após peça, pronto para comercializar." },
+            ].map((it) => (
+              <div key={it.t} className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+                <div className="grid h-10 w-10 place-items-center rounded-full bg-gradient-gold text-primary-foreground">
+                  <Check className="h-5 w-5" />
+                </div>
+                <h3 className="mt-4 font-display text-xl font-bold">{it.t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bônus */}
+      <section className="mx-auto max-w-5xl px-4 py-14 sm:py-20">
+        <h2 className="text-center font-display text-3xl font-bold text-balance sm:text-4xl">
+          Bônus exclusivos — <span className="text-accent">grátis hoje</span>
+        </h2>
+        <div className="mt-10 space-y-8">
+          {[
+            {
+              tag: "Bônus #1",
+              t: "Guia Completo de Materiais",
+              sub: "A lista exata do que comprar — sem chutar",
+              old: "R$97", now: "R$0",
+              d: "Tipos de cola recomendados, materiais essenciais, alternativas mais baratas e o que nunca comprar. A mesma base que eu uso em toda peça nova.",
+              img: "https://i.postimg.cc/85pzGf3y/Gemini-Generated-Image-vr684mvr684mvr68-1024x572.png",
+            },
+            {
+              tag: "Bônus #2",
+              t: "Mapa da Produção Perfeita",
+              sub: "O guia visual que elimina o achismo",
+              old: "R$197", now: "R$0",
+              d: "Quantidade ideal de cabelo, ponto correto de aplicação, pressão e alinhamento exatos. Sem adivinhação na execução.",
+              img: "https://i.postimg.cc/RZtFLBKR/Gemini-Generated-Image-trhnfbtrhnfbtrhn-2.png",
+            },
+          ].map((b, i) => (
+            <div key={b.t} className={`grid gap-6 rounded-3xl border border-border bg-card p-5 shadow-soft sm:p-8 md:grid-cols-2 md:items-center ${i % 2 ? "md:[&>img]:order-last" : ""}`}>
+              <img src={b.img} alt={b.t} className="w-full rounded-2xl" loading="lazy" />
+              <div>
+                <span className="inline-flex rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent-foreground">{b.tag}</span>
+                <h3 className="mt-3 font-display text-2xl font-bold sm:text-3xl">{b.t}</h3>
+                <p className="mt-1 italic text-muted-foreground">"{b.sub}"</p>
+                <p className="mt-4 text-sm leading-relaxed sm:text-base">{b.d}</p>
+                <p className="mt-4 text-sm">
+                  De <s className="text-muted-foreground">{b.old}</s> por <span className="font-bold text-accent">{b.now}</span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Depoimentos */}
+      <section className="bg-gradient-warm">
+        <div className="mx-auto max-w-5xl px-4 py-14 sm:py-20">
+          <h2 className="text-center font-display text-3xl font-bold text-balance sm:text-4xl">O que dizem nossas alunas</h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {[
+              { n: "Mariana Silva", img: "https://i.postimg.cc/vH5cwB5d/Imagem-do-Whats-App-de-2024-12-04-a(s)-20-55-26-1819ea0c.jpg", t: "Eu tinha muita dúvida sobre quais materiais comprar e morria de medo de fazer a fita descolar. O método explicou tudo de forma simples, principalmente a parte da montagem e da fixação. Consegui fazer minha primeira peça com acabamento bem mais bonito do que eu imaginava." },
+              { n: "Juliane Pereira", img: "https://i.postimg.cc/T199QWn0/710889587-18097991405023434-7852760872928750389-n.jpg", t: "Comprei achando que seria complicado, mas o passo a passo é bem direto. O que mais me ajudou foi entender a quantidade certa de cabelo, o alinhamento e como deixar as fitas padronizadas. Já estou treinando para vender minhas primeiras peças." },
+              { n: "Patrícia Amorim", img: "https://i.postimg.cc/Qx8SC0rn/unnamed-(1).jpg", t: "Eu já tinha perdido dinheiro comprando material errado, então o guia de materiais foi perfeito pra mim. O método mostra exatamente o que usar e como montar sem ficar testando no erro. Dá segurança até pra quem está começando do zero." },
+            ].map((d) => (
+              <figure key={d.n} className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+                <div className="flex items-center gap-3">
+                  <img src={d.img} alt={d.n} className="h-14 w-14 shrink-0 rounded-full object-cover" loading="lazy" />
+                  <div className="min-w-0">
+                    <p className="truncate font-semibold">{d.n}</p>
+                    <div className="flex text-accent">
+                      {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+                    </div>
+                  </div>
+                </div>
+                <blockquote className="mt-4 text-sm leading-relaxed text-muted-foreground">"{d.t}"</blockquote>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Oferta */}
+      <section id="oferta" className="mx-auto max-w-3xl px-4 py-14 sm:py-20">
+        <div className="rounded-3xl border-2 border-accent bg-card p-6 shadow-soft sm:p-10">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-accent">Oferta especial — só nesta página</p>
+          <img
+            src="https://i.postimg.cc/R0NsqjS7/img-produto.png"
+            alt="Método Fita Premium"
+            className="mx-auto mt-6 w-full max-w-xs"
+            loading="lazy"
+          />
+          <div className="mt-6 text-center">
+            <p className="text-sm text-muted-foreground">De <s>R$97,00</s> por apenas</p>
+            <p className="mt-1 font-display text-5xl font-black text-primary sm:text-6xl">R$ 19,90</p>
+            <p className="mt-2 text-sm text-muted-foreground">Pagamento único · acesso imediato</p>
+          </div>
+          <div className="mt-6">
+            <CTA>Quero adquirir com valor promocional</CTA>
+          </div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {[
+              { i: MessageCircle, t: "Suporte WhatsApp" },
+              { i: ShieldCheck, t: "Garantia 30 dias" },
+              { i: Clock, t: "Entrega imediata" },
+            ].map(({ i: Icon, t }) => (
+              <div key={t} className="flex items-center gap-2 rounded-xl bg-muted px-3 py-2">
+                <Icon className="h-4 w-4 shrink-0 text-accent" />
+                <span className="text-xs font-medium sm:text-sm">{t}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Garantias detalhe */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-4xl px-4 py-14 sm:py-16">
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <ShieldCheck className="h-8 w-8 text-accent" />
+              <h3 className="mt-3 font-display text-xl font-bold">Garantia de 30 dias</h3>
+              <p className="mt-2 text-sm text-muted-foreground">Você testa o método com calma. Se em 30 dias sentir que não é pra você, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.</p>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+              <Clock className="h-8 w-8 text-accent" />
+              <h3 className="mt-3 font-display text-xl font-bold">Entrega imediata</h3>
+              <p className="mt-2 text-sm text-muted-foreground">Pagamento aprovado, acesso liberado na hora — direto no seu e-mail. Você pode começar a confeccionar ainda hoje.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Resumo */}
+      <section className="mx-auto max-w-3xl px-4 py-14 sm:py-20">
+        <h2 className="text-center font-display text-3xl font-bold text-balance sm:text-4xl">Resumindo, sem rodeio</h2>
+        <p className="mt-6 text-center text-base text-muted-foreground sm:text-lg">
+          Você pode continuar tentando descobrir sozinha — testando material, perdendo dinheiro, demorando meses.
+        </p>
+        <p className="mt-4 text-center text-base font-semibold sm:text-lg">
+          Ou pode seguir um processo já validado: confeccionar mega hair de fita com acabamento profissional, replicável em qualquer tipo de cabelo.
+        </p>
+        <p className="mt-6 text-center font-display text-xl italic text-accent">
+          Hoje: 85% de desconto + 2 bônus. Pagamento único. 30 dias de garantia.
+        </p>
+        <div className="mt-8">
+          <CTA />
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-cream">
+        <div className="mx-auto max-w-3xl px-4 py-14 sm:py-20">
+          <h2 className="text-center font-display text-3xl font-bold sm:text-4xl">Perguntas frequentes</h2>
+          <div className="mt-8 space-y-4">
+            {[
+              { q: "Por que está tão barato, sendo tão completo?", a: "Duas razões, sem letra miúda: o preço não é obstáculo pra ninguém entrar; e cobrar filtra curiosa de quem está pronta pra produzir. Quem aplica o método e vê resultado, volta para os próximos treinamentos." },
+              { q: "Quando recebo o acesso?", a: "Na hora. Pagamento aprovado, os dados chegam no seu e-mail — acesso direto na área de membros." },
+              { q: "É pagamento único? Tem reembolso?", a: "Sim, único — nada de mensalidade. E se não for pra você, reembolso garantido em 30 dias. Risco zero." },
+            ].map((f) => (
+              <details key={f.q} className="group rounded-2xl border border-border bg-card p-5 shadow-soft">
+                <summary className="flex cursor-pointer items-center justify-between gap-4 font-semibold">
+                  <span>{f.q}</span>
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-accent text-accent-foreground transition group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sobre */}
+      <section className="mx-auto max-w-5xl px-4 py-14 sm:py-20">
+        <div className="grid gap-8 md:grid-cols-[auto_1fr] md:items-center">
+          <img
+            src="https://i.postimg.cc/pXTT6Zqv/professora-medice1.jpg"
+            alt="Fernanda Santos"
+            className="mx-auto h-48 w-48 rounded-full object-cover shadow-soft ring-4 ring-accent/30 md:h-56 md:w-56"
+            loading="lazy"
+          />
+          <div>
+            <span className="text-xs font-bold uppercase tracking-widest text-accent">Quem te ensina</span>
+            <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">Fernanda Santos</h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Já fiz centenas de transformações em mega hair na fita adesiva — a técnica mais procurada pelas clientes hoje, com foco em saúde capilar e zero acabamento aparente.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Hoje, além de ter a agenda lotada com esse serviço, ensino o passo a passo completo pra quem quer dominar confecção e aplicação. Centenas de alunas já saíram do zero e hoje entregam acabamento de luxo que fideliza cliente.
+            </p>
+            <p className="mt-4 font-display text-lg italic text-primary">Te vejo na primeira aula.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="bg-primary text-primary-foreground">
+        <div className="mx-auto max-w-3xl px-4 py-14 text-center sm:py-20">
+          <h2 className="font-display text-3xl font-bold text-balance sm:text-4xl">
+            Comece hoje. Sua primeira peça vendável pode sair essa semana.
+          </h2>
+          <p className="mt-4 opacity-90">De R$97 por <span className="font-bold text-accent">R$ 19,90</span> · pagamento único</p>
+          <div className="mt-8">
+            <CTA />
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-border bg-background">
+        <div className="mx-auto max-w-5xl px-4 py-8 text-center text-xs text-muted-foreground">
+          <p>© {new Date().getFullYear()} Método Fita Premium · Todos os direitos reservados.</p>
+          <p className="mt-2">Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook.</p>
+        </div>
+      </footer>
+
+      {/* Sticky mobile CTA */}
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-card/95 p-3 shadow-soft backdrop-blur md:hidden">
+        <a
+          href={CHECKOUT}
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-gold px-4 py-3 text-sm font-bold uppercase text-primary-foreground shadow-cta"
+        >
+          <Sparkles className="h-4 w-4" /> Garantir por R$ 19,90
+        </a>
+      </div>
+      <div className="h-20 md:hidden" />
+
+      <noscript>
+        <img height="1" width="1" style={{ display: "none" }} src="https://www.facebook.com/tr?id=2085744399005789&ev=PageView&noscript=1" alt="" />
+      </noscript>
     </div>
   );
 }
