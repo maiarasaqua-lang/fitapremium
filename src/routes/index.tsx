@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const CHECKOUT = "https://pay.lowify.com.br/checkout?product_id=XjSpMO";
+const CHECKOUT = "https://pay.wiapy.com/5nLlQXOSsjui";
 
 function scrollToOferta(e: React.MouseEvent) {
   e.preventDefault();
