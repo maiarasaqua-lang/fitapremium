@@ -261,7 +261,7 @@ function Index() {
             </div>
           </div>
           <img
-            src="https://i.postimg.cc/FFP79GhC/491296933-2556927701180118-8595795838997347534-n.jpg"
+            src="https://i.postimg.cc/MZCTYW2D/1.png"
             alt="Peça de mega hair confeccionada"
             className="w-full rounded-2xl shadow-soft"
             loading="lazy"
@@ -432,7 +432,7 @@ function Index() {
               Felizmente, adquirindo seu acesso hoje você garante 85% de desconto e + 2 bônus exclusivos.
             </p>
             <p className="font-semibold text-foreground">
-              Pagamento único, sem pegadinhas e 7 dias de garantia.
+              Pagamento único, sem pegadinhas e 30 dias de garantia.
             </p>
             <p>
               Legal... mas se é tão bom, por que está tão barato?
