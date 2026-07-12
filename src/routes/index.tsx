@@ -461,17 +461,17 @@ function Index() {
       </section>
 
       {/* Garantias detalhe */}
-      <section className="bg-primary text-primary-foreground">
+      <section className="bg-cream">
         <div className="mx-auto max-w-4xl px-4 py-14 sm:py-16">
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
               <ShieldCheck className="h-8 w-8 text-accent" />
-              <h3 className="mt-3 font-display text-xl font-bold text-foreground">Garantia de 30 dias</h3>
+              <h3 className="mt-3 font-display text-xl font-bold">Garantia de 30 dias</h3>
               <p className="mt-2 text-sm text-muted-foreground">Você testa o método com calma. Se em 30 dias sentir que não é pra você, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.</p>
             </div>
             <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
               <Clock className="h-8 w-8 text-accent" />
-              <h3 className="mt-3 font-display text-xl font-bold text-foreground">Entrega imediata</h3>
+              <h3 className="mt-3 font-display text-xl font-bold">Entrega imediata</h3>
               <p className="mt-2 text-sm text-muted-foreground">Pagamento aprovado, acesso liberado na hora — direto no seu e-mail. Você pode começar a confeccionar ainda hoje.</p>
             </div>
           </div>
