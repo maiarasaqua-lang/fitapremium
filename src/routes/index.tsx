@@ -382,7 +382,7 @@ function Index() {
           />
           <div className="mt-6 text-center">
             <p className="text-sm text-muted-foreground">De <s>R$97,00</s> por apenas</p>
-            <p className="mt-1 font-display text-5xl font-black text-primary sm:text-6xl">R$ 37,90</p>
+            <p className="mt-1 font-display text-5xl font-black text-primary sm:text-6xl">R$ 27,90</p>
             <p className="mt-2 text-sm text-muted-foreground">Pagamento único · acesso imediato</p>
           </div>
 
@@ -462,9 +462,10 @@ function Index() {
             <button
               type="button"
               onClick={() => setUpsellOpen(true)}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-foreground bg-background px-6 py-4 text-base font-bold uppercase tracking-wide text-foreground transition hover:bg-foreground hover:text-background sm:text-lg"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-green px-6 py-4 text-base font-bold uppercase tracking-wide text-primary-foreground shadow-green animate-pulse-green transition hover:brightness-110 sm:text-lg"
             >
-              Continuar com o plano básico
+              <Sparkles className="h-5 w-5 shrink-0" />
+              <span>Continuar com o plano básico</span>
             </button>
           </div>
         </div>
@@ -498,7 +499,7 @@ function Index() {
               Ahhh, eu sei que isso passou pela sua cabeça.
             </p>
             <p>
-              Se você prestar atenção, o valor de R$37,90 não parece ser um valor aleatório para cobrar em um produto (e de fato não é).
+              Se você prestar atenção, o valor de R$27,90 não parece ser um valor aleatório para cobrar em um produto (e de fato não é).
             </p>
             <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
               <p className="font-semibold text-foreground">Razão número 01: O valor não se torna um obstáculo para ninguém.</p>
