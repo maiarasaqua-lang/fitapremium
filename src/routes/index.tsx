@@ -16,6 +16,8 @@ export const Route = createFileRoute("/")({
 });
 
 const CHECKOUT = "https://pay.wiapy.com/5nLlQXOSsjui";
+const BASIC_CHECKOUT = "https://pay.wiapy.com/PjXIN-5dNVg";
+const UPSELL_CHECKOUT = "https://pay.wiapy.com/RfJk3OjtB3f";
 
 function scrollToOferta(e: React.MouseEvent) {
   e.preventDefault();
@@ -148,8 +150,17 @@ function PurchaseNotifications() {
 }
 
 function Index() {
+  const [upsellOpen, setUpsellOpen] = useState(false);
+
+  const trackCheckout = () => {
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "InitiateCheckout");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+
       {/* Top bar */}
       <div className="bg-primary text-primary-foreground">
         <p className="mx-auto max-w-5xl px-4 py-2 text-center text-xs font-medium sm:text-sm">
@@ -414,6 +425,52 @@ function Index() {
         </div>
       </section>
 
+      {/* Plano Básico */}
+      <section className="mx-auto max-w-3xl px-4 pb-14 sm:pb-20">
+        <div className="rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-10">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-muted-foreground">
+            Não pode investir agora?
+          </p>
+          <h3 className="mt-2 text-center font-display text-2xl font-bold sm:text-3xl">
+            Plano Básico
+          </h3>
+          <p className="mt-2 text-center text-sm text-muted-foreground">
+            Só o método essencial · sem bônus · sem suporte no WhatsApp
+          </p>
+          <p className="mt-4 text-center font-display text-4xl font-black text-foreground sm:text-5xl">
+            R$ 10,00
+          </p>
+          <ul className="mx-auto mt-6 max-w-md space-y-2 text-sm">
+            <li className="flex items-center gap-2">
+              <Check className="h-4 w-4 shrink-0 text-accent" />
+              <span>Acesso ao Método Fita Premium</span>
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground line-through">
+              <X className="h-4 w-4 shrink-0" />
+              <span>Guia Completo de Materiais</span>
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground line-through">
+              <X className="h-4 w-4 shrink-0" />
+              <span>Mapa da Produção Perfeita</span>
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground line-through">
+              <X className="h-4 w-4 shrink-0" />
+              <span>Grupo de suporte no WhatsApp</span>
+            </li>
+          </ul>
+          <div className="mt-6">
+            <button
+              type="button"
+              onClick={() => setUpsellOpen(true)}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-foreground bg-background px-6 py-4 text-base font-bold uppercase tracking-wide text-foreground transition hover:bg-foreground hover:text-background sm:text-lg"
+            >
+              Continuar com o plano básico
+            </button>
+          </div>
+        </div>
+      </section>
+
+
       {/* Sem rodeio */}
       <section className="bg-cream">
         <div className="mx-auto max-w-4xl px-4 py-14 sm:py-20">
@@ -531,6 +588,72 @@ function Index() {
       </footer>
 
       <PurchaseNotifications />
+
+      {upsellOpen && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 p-4 animate-fade-in"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setUpsellOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-md rounded-3xl border-2 border-accent bg-card p-6 shadow-soft sm:p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              aria-label="Fechar"
+              onClick={() => setUpsellOpen(false)}
+              className="absolute right-4 top-4 text-muted-foreground hover:text-foreground"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <p className="text-center text-xs font-bold uppercase tracking-widest text-accent">
+              Espera! Oferta exclusiva
+            </p>
+            <h3 className="mt-2 text-center font-display text-2xl font-black text-balance sm:text-3xl">
+              Leve o plano COMPLETO com todos os bônus
+            </h3>
+            <p className="mt-3 text-center text-sm text-muted-foreground">
+              Por muito pouco a mais, você garante o método + os 2 bônus exclusivos + grupo de suporte no WhatsApp.
+            </p>
+            <ul className="mt-5 space-y-2 text-sm">
+              {[
+                "Método Fita Premium completo",
+                "Bônus: Guia Completo de Materiais",
+                "Bônus: Mapa da Produção Perfeita",
+                "Grupo de suporte no WhatsApp",
+                "Garantia de 30 dias",
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-2">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 text-center">
+              <p className="text-xs text-muted-foreground">De <s>R$97,00</s> por apenas</p>
+              <p className="mt-1 font-display text-4xl font-black text-primary sm:text-5xl">R$ 19,90</p>
+            </div>
+            <a
+              href={UPSELL_CHECKOUT}
+              onClick={trackCheckout}
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-green px-6 py-4 text-base font-bold uppercase tracking-wide text-primary-foreground shadow-green animate-pulse-green transition hover:brightness-110"
+            >
+              <Sparkles className="h-5 w-5 shrink-0" />
+              <span>Sim! Quero o plano completo</span>
+            </a>
+            <a
+              href={BASIC_CHECKOUT}
+              onClick={trackCheckout}
+              className="mt-3 block text-center text-xs text-muted-foreground underline hover:text-foreground"
+            >
+              Não, prefiro o plano básico de R$ 10,00
+            </a>
+          </div>
+        </div>
+      )}
+
 
       <noscript>
         <img height="1" width="1" style={{ display: "none" }} src="https://www.facebook.com/tr?id=2085744399005789&ev=PageView&noscript=1" alt="" />
