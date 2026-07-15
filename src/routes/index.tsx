@@ -425,6 +425,52 @@ function Index() {
         </div>
       </section>
 
+      {/* Plano Básico */}
+      <section className="mx-auto max-w-3xl px-4 pb-14 sm:pb-20">
+        <div className="rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-10">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-muted-foreground">
+            Não pode investir agora?
+          </p>
+          <h3 className="mt-2 text-center font-display text-2xl font-bold sm:text-3xl">
+            Plano Básico
+          </h3>
+          <p className="mt-2 text-center text-sm text-muted-foreground">
+            Só o método essencial · sem bônus · sem suporte no WhatsApp
+          </p>
+          <p className="mt-4 text-center font-display text-4xl font-black text-foreground sm:text-5xl">
+            R$ 10,00
+          </p>
+          <ul className="mx-auto mt-6 max-w-md space-y-2 text-sm">
+            <li className="flex items-center gap-2">
+              <Check className="h-4 w-4 shrink-0 text-accent" />
+              <span>Acesso ao Método Fita Premium</span>
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground line-through">
+              <X className="h-4 w-4 shrink-0" />
+              <span>Guia Completo de Materiais</span>
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground line-through">
+              <X className="h-4 w-4 shrink-0" />
+              <span>Mapa da Produção Perfeita</span>
+            </li>
+            <li className="flex items-center gap-2 text-muted-foreground line-through">
+              <X className="h-4 w-4 shrink-0" />
+              <span>Grupo de suporte no WhatsApp</span>
+            </li>
+          </ul>
+          <div className="mt-6">
+            <button
+              type="button"
+              onClick={() => setUpsellOpen(true)}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-foreground bg-background px-6 py-4 text-base font-bold uppercase tracking-wide text-foreground transition hover:bg-foreground hover:text-background sm:text-lg"
+            >
+              Continuar com o plano básico
+            </button>
+          </div>
+        </div>
+      </section>
+
+
       {/* Sem rodeio */}
       <section className="bg-cream">
         <div className="mx-auto max-w-4xl px-4 py-14 sm:py-20">
