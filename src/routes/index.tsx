@@ -150,8 +150,17 @@ function PurchaseNotifications() {
 }
 
 function Index() {
+  const [upsellOpen, setUpsellOpen] = useState(false);
+
+  const trackCheckout = () => {
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "InitiateCheckout");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+
       {/* Top bar */}
       <div className="bg-primary text-primary-foreground">
         <p className="mx-auto max-w-5xl px-4 py-2 text-center text-xs font-medium sm:text-sm">
