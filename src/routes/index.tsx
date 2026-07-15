@@ -16,6 +16,8 @@ export const Route = createFileRoute("/")({
 });
 
 const CHECKOUT = "https://pay.wiapy.com/5nLlQXOSsjui";
+const BASIC_CHECKOUT = "https://pay.wiapy.com/PjXIN-5dNVg";
+const UPSELL_CHECKOUT = "https://pay.wiapy.com/RfJk3OjtB3f";
 
 function scrollToOferta(e: React.MouseEvent) {
   e.preventDefault();
