@@ -332,29 +332,6 @@ function Index() {
         </div>
       </section>
 
-      {/* O que recebe */}
-      <section className="bg-cream">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:py-20">
-          <h2 className="text-center font-display text-3xl font-bold text-balance sm:text-4xl">O que você recebe no método</h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
-            {[
-              { t: "Confecção do zero", d: "Passo a passo completo para produzir sua primeira unidade com segurança, mesmo começando sem experiência." },
-              { t: "Fita que não descola", d: "A estrutura exata de montagem para fixação forte e durabilidade — o que separa peça amadora de peça vendável." },
-              { t: "Lista de materiais sem desperdício", d: "O que comprar, o que evitar, e onde a maioria perde dinheiro sem saber." },
-              { t: "Padronização para vender", d: "Como repetir o mesmo padrão de qualidade peça após peça, pronto para comercializar." },
-            ].map((it) => (
-              <div key={it.t} className="rounded-2xl border border-border bg-card p-6 shadow-soft">
-                <div className="grid h-10 w-10 place-items-center rounded-full bg-gradient-green text-primary-foreground">
-                  <Check className="h-5 w-5" />
-                </div>
-                <h3 className="mt-4 font-display text-xl font-bold">{it.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{it.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Bônus */}
       <section className="mx-auto max-w-5xl px-4 py-14 sm:py-20">
         <h2 className="text-center font-display text-3xl font-bold text-balance sm:text-4xl">
