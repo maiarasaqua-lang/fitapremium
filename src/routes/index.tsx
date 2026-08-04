@@ -197,35 +197,87 @@ function Index() {
         </div>
       </header>
 
-      {/* 4 perguntas */}
-      <section className="mx-auto max-w-5xl px-4 py-14 sm:py-20">
-        <div className="grid gap-10 md:grid-cols-2 md:items-center">
-          <img
-            src="https://i.postimg.cc/rpSDMkpz/Gemini-Generated-Image-mj8sdbmj8sdbmj8s-1024x1024.png"
-            alt="Confecção de mega hair"
-            className="w-full rounded-2xl shadow-soft"
-            loading="lazy"
-          />
-          <div>
-            <h2 className="font-display text-2xl font-bold text-balance sm:text-4xl">
-              As 4 perguntas que travam quem quer confeccionar mega hair de fita
-            </h2>
-            <ul className="mt-6 space-y-4">
-              {[
-                "Como vender confecção sem precisar aplicar?",
-                "Qual material entra na lista e qual é desperdício de dinheiro?",
-                "Qual cola realmente fixa — e qual descola em 2 semanas?",
-                "Como deixar o resultado leve, padronizado e digno de cobrar caro?",
-              ].map((q, i) => (
-                <li key={i} className="flex gap-3 rounded-xl border border-border bg-card p-4">
-                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-sm font-bold text-accent-foreground">{i + 1}</span>
-                  <p className="text-sm font-medium sm:text-base">{q}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 text-base text-muted-foreground">
-              Você não precisa testar isso no erro. Existe uma sequência certa — e ela é simples de seguir.
-            </p>
+      {/* Dúvidas comuns + método */}
+      <section className="mx-auto max-w-4xl px-4 py-14 sm:py-20">
+        <img
+          src="https://i.postimg.cc/rpSDMkpz/Gemini-Generated-Image-mj8sdbmj8sdbmj8s-1024x1024.png"
+          alt="Confecção de mega hair de fita"
+          className="mx-auto w-full max-w-sm rounded-2xl shadow-soft"
+          loading="lazy"
+        />
+        <h2 className="mt-8 text-center font-display text-2xl font-bold text-balance sm:text-4xl">
+          As dúvidas mais comuns de quem quer confeccionar mega hair de fita
+        </h2>
+        <ul className="mt-6 space-y-3">
+          {[
+            "Como ganhar dinheiro com mega hair de fita sem precisar aplicar?",
+            "Quais são os materiais certos para confeccionar e vender sem erro?",
+            "Qual cola realmente funciona e não faz a fita descolar depois?",
+            "Como produzir um mega hair bonito, leve, padronizado e com qualidade profissional?",
+          ].map((q, i) => (
+            <li key={i} className="flex gap-3 rounded-xl border border-border bg-card p-4">
+              <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent text-sm font-bold text-accent-foreground">{i + 1}</span>
+              <p className="text-sm font-medium sm:text-base">{q}</p>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-8 space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p>
+            Essas são algumas das dúvidas mais comuns de quem quer entrar nesse mercado… E se eu te falar que é totalmente possível aprender a confeccionar mega hair de fita com qualidade profissional, mesmo começando do absoluto zero?
+          </p>
+          <p>
+            E o melhor… Você não precisa fazer cursos caros, nem perder dinheiro testando materiais, nem passar meses tentando aprender sozinho. Tudo o que você precisa é seguir uma estrutura simples, direta e validada.
+          </p>
+          <p>
+            É claro que o resultado depende de alguns fatores importantes: Material, técnica, execução… Mas sem dúvida nenhuma, entender a sequência correta e os pontos exatos do processo é o que realmente faz você sair do zero e começar a produzir com qualidade.
+          </p>
+          <p className="font-semibold text-foreground">Mas deixa eu te fazer algumas perguntas…</p>
+          <ul className="space-y-2 pl-1">
+            <li>— O que você acha de aprender uma habilidade simples que pode te gerar renda todos os meses?</li>
+            <li>— O que você acha de produzir seu próprio mega hair de fita e poder vender com segurança?</li>
+            <li>— E se você soubesse exatamente o processo completo, sem precisar adivinhar nada?</li>
+          </ul>
+          <p>Isso não tornaria tudo mais fácil e rápido pra você?</p>
+          <p>Pode ter certeza que sim.</p>
+          <p>
+            Foi por isso que eu criei o <strong className="text-foreground">Método Fita Premium</strong>. Esse é exatamente o processo que permite confeccionar mega hair de fita com acabamento profissional, leve, natural e com alta fixação… Mesmo para quem nunca fez antes.
+          </p>
+          <p>
+            Esse método foi criado para ser simples, direto e totalmente aplicável… …sem complicação, sem excesso de teoria e sem confusão.
+          </p>
+          <p>
+            Você não precisa de meses para aprender… Se seguir corretamente, em até <span className="font-semibold text-accent">7 dias</span> você já consegue produzir suas primeiras peças prontas para uso ou venda.
+          </p>
+          <p className="font-semibold text-foreground">Nós vamos direto ao ponto e focar no que realmente importa:</p>
+          <ul className="space-y-2">
+            <li className="flex items-center gap-2"><span className="text-accent">👉</span> Produção correta</li>
+            <li className="flex items-center gap-2"><span className="text-accent">👉</span> Estrutura profissional</li>
+            <li className="flex items-center gap-2"><span className="text-accent">👉</span> Resultado que pode ser vendido</li>
+          </ul>
+        </div>
+
+        <div className="mt-10 rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8">
+          <h3 className="text-center font-display text-2xl font-black text-balance sm:text-3xl">
+            O que você irá receber nesse método
+          </h3>
+          <div className="mt-6 space-y-5">
+            {[
+              { t: "Como Confeccionar Mega Hair do Absoluto ZERO", d: "Você vai aprender o passo a passo completo para começar do zero e já produzir suas primeiras unidades com segurança." },
+              { t: "Estrutura Profissional da Fita (Que NÃO Descola)", d: "Você vai entender exatamente como montar a fita de forma que ela tenha fixação forte, acabamento limpo e durabilidade — essencial para vender." },
+              { t: "Como Escolher os Materiais Certos (Sem Desperdício)", d: "Saiba exatamente o que comprar, o que evitar e como não jogar dinheiro fora com materiais errados." },
+              { t: "Como Padronizar Para Produzir e Vender", d: "Aprenda a criar peças com padrão profissional, mantendo qualidade e consistência para comercialização." },
+            ].map((it) => (
+              <div key={it.t} className="flex gap-3">
+                <div className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-green text-primary-foreground">
+                  <Check className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground">{it.t}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground sm:text-base">{it.d}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
