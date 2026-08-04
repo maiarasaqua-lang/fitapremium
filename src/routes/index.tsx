@@ -16,8 +16,7 @@ export const Route = createFileRoute("/")({
 });
 
 const CHECKOUT = "https://pay.wiapy.com/5nLlQXOSsjui";
-const BASIC_CHECKOUT = "https://pay.wiapy.com/PjXIN-5dNVg";
-const UPSELL_CHECKOUT = "https://pay.wiapy.com/RfJk3OjtB3f";
+
 
 function scrollToOferta(e: React.MouseEvent) {
   e.preventDefault();
@@ -150,14 +149,6 @@ function PurchaseNotifications() {
 }
 
 function Index() {
-  const [upsellOpen, setUpsellOpen] = useState(false);
-
-  const trackCheckout = () => {
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "InitiateCheckout");
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background text-foreground">
 
