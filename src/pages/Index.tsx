@@ -1,19 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Check, ShieldCheck, Clock, MessageCircle, Sparkles, Star, ShoppingBag, X } from "lucide-react";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Método Fita Premium — Confeccione Mega Hair de Fita" },
-      { name: "description", content: "Aprenda a confeccionar mega hair de fita com acabamento de salão. Sem aplicar em ninguém. R$37,90 hoje." },
-      { property: "og:title", content: "Método Fita Premium — Mega Hair de Fita" },
-      { property: "og:description", content: "Confeccione com fixação forte e acabamento profissional. Método + 2 bônus." },
-      { property: "og:image", content: "https://i.postimg.cc/R0NsqjS7/img-produto.png" },
-    ],
-  }),
-  component: Index,
-});
 
 const CHECKOUT = "https://pay.wiapy.com/5nLlQXOSsjui";
 
@@ -148,7 +135,7 @@ function PurchaseNotifications() {
   );
 }
 
-function Index() {
+export default function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
 
